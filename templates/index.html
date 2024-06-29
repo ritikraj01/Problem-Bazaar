@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Problem Bazaar</title>
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="{{ url_for('static', filename='css/styles.css') }}"
+		/>
+		<link
+			rel="apple-touch-icon"
+			sizes="180x180"
+			href="{{ url_for('static', filename='assets/apple-touch-icon.png') }}"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="32x32"
+			href="{{ url_for('static', filename='assets/favicon-32x32.png') }}"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="16x16"
+			href="{{ url_for('static', filename='assets/favicon-16x16.png') }}"
+		/>
+		<link
+			rel="manifest"
+			href="{{ url_for('static', filename='assets/site.webmanifest') }}"
+		/>
+	</head>
+	<body>
+		<img
+			class="heading-img"
+			src="{{ url_for('static',
+		filename='assets/heading.png') }}"
+			alt="Heading-Img"
+		/>
+		<div class="container">
+			<div class="form-wrap">
+				<form id="search-form" class="form" method="POST" action="/">
+					<div class="form-group">
+						<input
+							type="text"
+							name="search"
+							id="search-input"
+							placeholder="Enter Your Query"
+						/>
+						<input
+							id="search-button"
+							class="form-btn"
+							type="submit"
+							value="Search"
+						/>
+					</div>
+				</form>
+			</div>
+			<div class="problems-wrap">
+				<h2>Problems</h2>
+				{% if results %}
+				<ul>
+					{% for result in results %}
+					<a href="{{ result[1] }}" target="_blank">
+						<li class="problem-wrap flex-box">
+							<img
+								src="{{ url_for('static', filename='assets/' + result[3] + '.png') }}"
+								alt="logo"
+							/>
+							<div class="problem-name">
+								<p>{{ result[0] }}</p>
+							</div>
+							<div class="problem-tags">
+								<p>{{ result[2] }}</p>
+							</div>
+						</li>
+					</a>
+					{% endfor %}
+				</ul>
+				{% endif %}
+			</div>
+		</div>
+		<script
+			src="https://kit.fontawesome.com/edbdfc2854.js"
+			crossorigin="anonymous"
+		></script>
+		<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+	</body>
+</html>

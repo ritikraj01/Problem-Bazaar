@@ -1,0 +1,5 @@
+scraping/
+__pycache__/
+venv/
+.vscode/
+.vercel
